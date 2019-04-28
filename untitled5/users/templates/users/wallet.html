@@ -1,0 +1,68 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+ <script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 style="color: black" class="modal-title" id="myModalLabel">PayWAVE Wallet</h4>
+      </div>
+      <div class="modal-body">
+
+
+<div class="container">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+    </div>
+    <h3 style="color:black ">Wallet info</h3>
+     <p style="color: black">User-{{ user.username }}</p>
+    <p style="color:black ">Amount-<b>{{ amount }}{{ amount1 }}</b> Rs</p>
+     <form method="post" action="/wallet_update/" name="">
+         {% csrf_token %}
+        <div class="col-xs-2" >
+         <div class="form-group" >
+             <h3 style="color: #007bff">Update Balance Here!</h3>
+             <input class="form-control" name="addamount" type="number" placeholder="Enter Amount" required="required" />
+         </div>
+        </div>
+              <button type="submit" class="btn btn-primary">Proceed</button>
+     </form>
+</div>
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}

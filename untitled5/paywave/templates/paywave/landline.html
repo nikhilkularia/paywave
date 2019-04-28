@@ -1,0 +1,81 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">Landline</h4>
+      </div>
+      <div class="modal-body">
+
+
+           <div class="tabs-box">
+                            {% load static %}
+
+            <img src="{% static 'paywave/images/telephone.png' %}" class="commonimage" alt="" data-pin-nopin="true">
+              <form action="/actlandline/" method="POST" id="landlineform">
+                  {% csrf_token %}
+
+                               <div class="input-group mb-3">
+                                    <select class="custom-select" id="selectoperator" name="land_operator" data-live-search="true" required="required">
+                                  <option values="Select Operator">LandLine Operator</option>
+                                  <option values="airtel landline">Airtel Landline</option>
+                                  <option values="BSNL">BSNL Landine</option>
+                                  <option values="MTNL">MTNL</option>
+                                        <option values="MTNL delhi">MTNL Delhi</option>
+                                        <option values="MTNL mumbai">MTNL Mumbai</option>
+                                  <option values="RELIANCE">Reliance Communication</option>
+                                  <option values="TATA DOCOMO">TATA Docomo Landline</option>
+
+
+                                </select>
+                                </div>
+
+                               <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" name="phone_number" placeholder="Telephone Number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                     </div>
+
+
+                                 <button type="submit" class="btn btn-primary">Proceed</button>
+
+
+						</form>
+
+						</div>
+
+
+
+      </div>
+      <div class="modal-footer">
+       <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock content %}
+

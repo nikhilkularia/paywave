@@ -1,0 +1,244 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% load static %}
+
+ <script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">PayWAVE</h4>
+      </div>
+      <div class="modal-body">
+            <div class="tabs-box">
+    <h2 class="paymenth2">Select Payment Method</h2>
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Credit Card</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Debit Card</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Net Banking</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" id="pills-paypal-tab" data-toggle="pill" href="#pills-paypal" role="tab" aria-controls="pills-paypal" aria-selected="false">PayWAVE</a>
+        </li>
+        </ul>
+
+    </ul>
+
+
+
+
+ <div class="tab-content" id="pills-tabContent">
+       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <h3 class="paymenth2">Personal Information</h3>
+
+           <form method="POST" action="/{{ action1 }}/">
+
+                    {% csrf_token %}
+
+                    <div class="form-group"><label for="formGroupExampleInput">Email</label>
+                         <input type="text" name="email" class="form-control" id="formGroupExampleInput" placeholder="Enter Your Email" >
+                    </div>
+
+                    <div class="form-group"><label for="formGroupExampleInput">First Name</label>
+                         <input type="text" name="first_name" class="form-control" id="formGroupExampleInput" placeholder="Enter Your Name" >
+                    </div>
+
+
+
+                    <h3 class="paymenth2">Credit Card Info</h3>
+
+
+
+                     <div class="form-group"><label for="formGroupExampleInput">Name On Card</label>
+                         <input type="text" name="name_on_card" class="form-control" id="formGroupExampleInput" placeholder="Name On Card" >
+                     </div>
+
+                     <div class="form-group"><label for="formGroupExampleInput">Card Number</label>
+                          <input type="text" name="card_number" class="form-control" id="formGroupExampleInput" placeholder="0000-0000-0000-0000" >
+                     </div>
+
+
+                     <div class="expire">
+                           <div class="form-group">
+                                <h5>EXPIRATION</h5>
+
+                                      <input type="text" name="expir_emonth" class="form-control" value="6" min="1" max="12" />
+                                      <input type="text" name="expire_year" class="form-control" value="1988" min="1"  />
+
+
+
+                           </div>
+                     </div>
+
+                     <div class="form-group">
+                          <h5>CVV NUMBER</h5>
+                          <input class="form-control" name="cvv_number" type="text" value="xxxx" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'xxxx';}">
+                     </div>
+                          <button class="btn btn-primary" type="submit">Pay</button>
+           </form>
+       </div>
+
+
+
+
+
+
+       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+           <form method="post" action="/{{ action1 }}/">
+                    <h3 class="pay-title">Debit Card Info</h3>
+               {% csrf_token %}
+
+
+
+                     <div class="form-group"><label for="formGroupExampleInput">Name On Card</label>
+                         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name On Card" required="required">
+                     </div>
+
+                     <div class="form-group"><label for="formGroupExampleInput">Card Number</label>
+                          <input type="text" class="form-control" id="formGroupExampleInput" placeholder="0000-0000-0000-0000" required="required">
+                     </div>
+
+
+                     <div class="expire">
+                           <div class="form-group">
+                                <h5>EXPIRATION</h5>
+                               <ul>
+                                   <li>
+                                      <input type="number" class="form-control" type="text" value="6" min="1" max="12" required="required"/>
+                                   </li>
+
+                                   <li>
+                                       <input type="number" class="form-control" type="text" value="1988" min="1"  required="required"/>
+                                   </li>
+                               </ul>
+                           </div>
+                     </div>
+
+                     <div class="form-group">
+                          <h5>CVV NUMBER</h5>
+                          <input class="form-control" type="text" value="xxxx" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'xxxx';}" required="required">
+                     </div>
+                          <button class="btn btn-primary" type="submit">Pay</button>
+           </form>
+
+       </div>
+
+
+
+       <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+
+
+
+
+                 <h3>Net Banking</h3>
+											<div class="radio-btns">
+												<div class="swit">
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" checked=""><i></i>Andhra Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Allahabad Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Bank of Baroda</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Canara Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>IDBI Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Icici Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Indian Overseas Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Punjab National Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>South Indian Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>State Bank Of India</label> </div></div>
+												</div>
+												<div class="swit">
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio" checked=""><i></i>City Union Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>HDFC Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>IndusInd Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Syndicate Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Deutsche Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Corporation Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>UCO Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Indian Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>Federal Bank</label> </div></div>
+													<div class="check_box"> <div class="radio"> <label><input type="radio" name="radio"><i></i>ING Vysya Bank</label> </div></div>
+												</div>
+											</div>
+                 <button class="btn btn-primary" type="submit">Continue</button>
+
+
+
+
+
+       </div>
+
+      <div class="tab-pane fade" id="pills-paypal" role="tabpanel" aria-labelledby="pills-paypal-tab">
+        <h3>PayWAVE</h3>
+        <h4>Already Have A PayPal Account?</h4>
+        <h2>Login</h2>
+          <form method="post" action="/wpayment/">
+              {% csrf_token %}
+          <div class="form-group row">
+                 <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                 <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required="required">
+              </div>
+          </div>
+
+          <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword3" placeholder="Password" required="required">
+          </div>
+      </div>
+
+
+       <button class="btn btn-primary" type="submit">Login</button>
+
+          </form>
+
+
+
+      </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+       <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+

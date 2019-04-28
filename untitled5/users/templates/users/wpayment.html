@@ -1,0 +1,62 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+ <script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">PayWAVE</h4>
+      </div>
+      <div class="modal-body">
+
+
+<div class="container">
+    <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+    </div>
+    <form method="post" action="/wallet_payment/">
+        {% csrf_token %}
+    <p style="color: red">PayWAVE WALLET</p>
+    <p style="color:black ">Wallet info</p>
+     <p style="color: black">User-{{ user.username }}</p>
+     <p style="color:black ">Wallet Balance{{wamount}} Rs</p>
+     <p style="color:black ">Payable-{{tamount}} Rs</p>
+         <button type="submit" class="btn btn-primary">Pay</button>
+    </form>
+
+</div>
+      </div>
+      <div class="modal-footer">
+       <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}

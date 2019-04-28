@@ -1,0 +1,91 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">DTH Card</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+
+    <div class="tabs-box">
+        {% load static %}
+
+            <img src="{% static 'paywave/images/cyber-dth.png' %}" class="mobileimage" alt="" data-pin-nopin="true">
+              <form action="/actdth/" method="POST" id="mobileform">
+                  {% csrf_token %}
+
+                               <div class="input-group mb-3">
+                                    <select class="custom-select" id="selectoperator" name="dthoperator" data-live-search="true" required="required">
+                                  <option values="Select Operator">DTH Operator</option>
+                                  <option values="Airtel">Airtel</option>
+                                  <option values="Aircel">Aircel</option>
+                                  <option values="BSNL">BSNL</option>
+                                  <option values="Tata Docomo">Tata Docomo</option>
+                                  <option values="Reliance GSM">Reliance GSM</option>
+                                  <option values="Reliance CDMA">Reliance CDMA</option>
+                                  <option values="Telenor">Telenor</option>
+                                  <option values="Jio">Jio</option>
+                                  <option values="Vodafone">Vodafone</option>
+                                  <option values="Idea">Idea</option>
+                                  <option values="MTS">MTS</option>
+                                </select>
+                                </div>
+
+                               <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" name="dthcustomer" placeholder="Enter Customer ID" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                     </div>
+
+                                 <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" name="dthamount" placeholder="Amount" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">  <a href="#" class="badge badge-info">VIEW ALL PLANS</a>
+                                     </div>
+
+                                 <button type="submit" class="btn btn-primary">RECHARGE</button>
+
+
+						</form>
+
+						</div>
+
+
+
+      </div>
+      <div class="modal-footer">
+       <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}
+

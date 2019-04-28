@@ -1,0 +1,92 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">Electricity</h4>
+      </div>
+      <div class="modal-body">
+
+
+  <div class="tabs-box">
+                            {% load static %}
+
+            <img src="{% static 'paywave/images/light.png' %}" class="commonimage" alt="" data-pin-nopin="true">
+              <form action="/actelectricity/" method="POST" id="electricityform">
+                  {% csrf_token %}
+
+                               <div class="input-group mb-3">
+                                    <select class="custom-select" id="selectoperator" name="elecoperator" data-live-search="true" required="required">
+                                  <option values="Select Operator">Eletricity Operator</option>
+                                  <option values="APDCL">Assam Power Distribution Company Limited (APDCL), Assam</option>
+                                  <option values="APSEB">Andhra Pradesh State Electricity Board (APSEB), Andhra Pradesh</option>
+                                  <option values="UHBVVN">Uttar Haryana Bijli Vitran Nigam Limited</option>
+                                  <option values="BSES">BSES Rajdhani Power Ltd. Delhi</option>
+                                  <option values="BESC">bangalore electricity supply company</option>
+                                  <option values="BEESYPL">BSES Yamuna Power Ltd. Delhi</option>
+                                  <option values="DGVCL">Dakshin Gujarat Vij Company Ltd. (DGVCL) Surat</option>
+                                  <option values="GEB">Goa Electricity Board</option>
+                                  <option values="MGVCL">Madhya Gujarat Vij Company Ltd. (MGVCL) Vadodara</option>
+                                  <option values="MESCL">Mangalore Electricity Supply Company Limited</option>
+                                  <option values="MPPKVVCL">Madhya Pradesh Poorv Kshetra Vidyut Vitaran Company Ltd.</option>
+                                        <option values="HESCL">Hubli Electricity Supply Company Limited</option>
+                                        <option values="KPCL">Karnataka Power Corporation Limited</option>
+                                        <option values="KSEB">Kerala State Electricity Board</option>
+                                        <option values="MSEDCL">Maharashtra State Electricity Distribution Company Limited</option>
+                                        <option values="NDPL">North Delhi Power Limited</option>
+                                        <option values="NTPC">National Thermal Power Corporation</option>
+                                        <option values="NPCL">Noida Power Company Limited</option>
+                                        <option values="RI">Reliance Infrastructure</option>
+                                        <option values="TP">Tata Power></option>
+                                </select>
+                                </div>
+
+                               <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" name="knumber" placeholder="Enter Customer ID" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                     </div>
+
+                                 <button type="submit" class="btn btn-primary">PAY</button>
+
+
+						</form>
+
+
+						</div>
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}
+

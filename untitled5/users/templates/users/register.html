@@ -1,0 +1,65 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">PayWAVE</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">join today</legend>
+            {{ form|crispy}}
+            <div class="form-group ">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+
+        </fieldset>
+
+    </form>
+
+<div class="border-top pt-3">
+        <SMALL class="text-muted">Already have an account? <a class="ml-2" href="{% url 'login'%}">Login</a>
+        </SMALL>
+    <p><strong>-- OR --</strong></p>
+  <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a><br>
+    </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock content %}

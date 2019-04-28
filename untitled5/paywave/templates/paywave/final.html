@@ -1,0 +1,114 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">PayWAVE</h4>
+      </div>
+      <div class="modal-body">
+     <div class="tabs-box">
+     <h3 name="payment">Payment Successful</h3>
+ {% if "mobile" == data %}
+
+     <div class="mobileq">
+    <p>Service Type-   {{ mservice }}</p>
+    <p>Mobile Number-  {{mnumber}}</p>
+    <p>Mobile Operator-{{moperator}}</p>
+    <p>Mobile Circle-  {{mcircle}}</p>
+    <p>Amount-         {{mamount}}</p>
+     </div>
+{% elif "dth" == data %}
+<div class="postdth">
+    <p>DTH Operator-{{ dthoperator }}</p>
+    <p>Customer ID- {{ dthcustomer }}</p>
+    <p>Amount-{{dthamount  }}</p>
+</div>
+{% elif "elec" == data  %}
+<div class="postelec">
+    <p>Operator-{{ elecoperator }}</p>
+    <p>Customer ID-{{ eleccustomer }}</p>
+
+</div>
+{% elif "gas" == data %}
+<div class="postgas">
+<p>Gas Provider-{{gasoperator}}</p>
+<p>B.P. Number-{{bpnumber }}</p>
+</div>
+{% elif "land" == data %}
+<div class="postland">
+<p>Operator-{{landoperator}}</p>
+<p>Telephone Number-{{landnumber}}</p>
+
+</div>
+
+{% elif "water" == data %}
+<div class="postwater">
+    <p>Operator-{{ wateroperator }}</p>
+    <p>W. number-{{ wnumber }}</p>
+</div>
+{% elif "data" == data %}
+<div class="postdata">
+    <p>Service-{{ dataservice }}</p>
+    <p>Number-{{ datanumber }}</p>
+    <p>Operator-{{ dataoperator }}</p>
+    <p>Circle-{{ datacircle }}</p>
+    <p>Amount-{{ dataamount }}</p>
+</div>
+{% elif "broad" == data %}
+<div class="postbroad">
+    <p>Operaror-{{broadoperator  }}</p>
+    <p>Number-{{broadnumber  }}</p>
+</div>
+{% elif "metro" == data %}
+<div class="postmetro">
+    <p>Metro Operator-{{metrooperator}}</p>
+    <p>Number-{{metronumber}}</p>
+</div>
+ {% endif %}
+     </div>
+
+      <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+ <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+   <span class="swal2-success-line-tip"></span>
+   <span class="swal2-success-line-long"></span>
+   <div class="swal2-success-ring"></div>
+   <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+   <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+  </div>
+
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+       <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock content %}
+

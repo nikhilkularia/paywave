@@ -1,0 +1,74 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+
+    <script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">Gas</h4>
+      </div>
+      <div class="modal-body">
+           <div class="tabs-box">
+     {% load static %}
+
+            <img src="{% static 'paywave/images/gas.png' %}" class="commonimage" alt="" data-pin-nopin="true">
+              <form action="/actgas/" method="POST" id="mobileform">
+                  {% csrf_token %}
+
+                               <div class="input-group mb-3">
+                                    <select class="custom-select" id="selectoperator" name="gasprovider" data-live-search="true" required="required">
+                                  <option values="Select Operator">Gas</option>
+                                  <option values="Airtel">Adani Gas</option>
+                                  <option values="Aircel">Gujrat Gas Limited</option>
+                                  <option values="BSNL">Mahanagar Gas</option>
+                                  <option values="BSNL">Still Energy</option>
+
+
+                                </select>
+                                </div>
+
+                               <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" name="bpnumber" placeholder="BP Number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                     </div>
+
+                                 <button type="submit" class="btn btn-primary">Proceed</button>
+
+
+						</form>
+
+						</div>
+
+
+      </div>
+      <div class="modal-footer">
+       <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock content %}
+

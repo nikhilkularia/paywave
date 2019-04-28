@@ -1,0 +1,132 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% load static %}
+
+    <script type="text/javascript">
+     function show(){
+        $('#myModal').modal('show');
+    }
+</script>
+
+
+<script>
+ window.onload=show;
+</script>
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title" id="myModalLabel">Data Card</h4>
+      </div>
+      <div class="modal-body">
+
+           <div class="tabs-box">
+            <img src="{% static 'paywave/images/datacard.png' %}" class="commonimage" alt="" data-pin-nopin="true">
+              <form action="/actdatacard/" method="POST" id="mobileform">
+                  {% csrf_token %}
+
+                                  <div class="input-group mb-3">
+                                   <select class="custom-select" id="inputGroupSelect02" name="service">
+                                   <option selected>Service Type</option>
+                                   <option value="prepaid">prepaid</option>
+                                   <option value="postpaid">postpaid</option>
+                                   </select>
+                                  </div>
+
+
+                                <div class="form-group">
+
+                                    <input class="form-control"  name="phone_number" type="text" pattern="\d{10}" placeholder="Enter Card Number" required="required" />
+								    <p class="validation01">
+
+								</p>
+                                </div>
+
+
+                                <div class="input-group mb-3">
+                                    <select class="custom-select" id="selectoperator" name="operator" data-live-search="true" required="required">
+                                    <option selected>Select Operator...</option>
+                                    <option value="Airtel">Airtel</option>
+                                    <option value="Aircel">Aircel</option>
+                                    <option value="BSNL">BSNL</option>
+                                    <option value="Tata Docomo">Tata Docomo</option>
+                                    <option value="Reliance GSM">Reliance GSM</option>
+                                    <option value="Reliance CDMA">Reliance CDMA</option>
+                                    <option value="Telenor">Telenor</option>
+                                    <option value="Jio">Jio</option>
+                                    <option value="Vodafone">Vodafone</option>
+                                    <option value="Idea">Idea</option>
+                                    <option value="MTS">MTS</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                <select class="custom-select" id="circle" name="circle" data-live-search="true" required="required">
+                                  <option value="Select Circle">Select Circle</option>
+                                  <option value="Chennai">Chennai</option>
+                                  <option value="Delhi NCR">Delhi NCR</option>
+                                  <option value="Kolkata">Kolkata</option>
+                                  <option value="Mumbai">Mumbai</option>
+                                  <option value="Maharashtra & Goa">Maharashtra & Goa</option>
+                                  <option value="Assam">Assam</option>
+                                  <option value="Bihar & Jharkhand">Bihar & Jharkhand</option>
+                                  <option value="Gujarat">Gujarat</option>
+                                  <option value="Haryana">Haryana</option>
+                                  <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                  <option value="Jummu & Kashmir">Jummu & Kashmir</option>
+                                  <option value="Karnataka">Karnataka</option>
+                                  <option value="Kerala">Kerala</option>
+                                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                  <option value="MP & Chattisgarh">MP & Chattisgarh</option>
+                                  <option value="North East">North East</option>
+                                  <option value="Orissa">Orissa</option>
+                                  <option value="Punjab">Punjab</option>
+                                  <option value="Rajasthan">Rajasthan</option>
+                                  <option value="Tamilnadu">Tamilnadu</option>
+                                  <option value="UP East">UP East</option>
+                                  <option value="UP West & Utterkhand">UP West & Utterkhand</option>
+                                  <option value="West Bengal">West Bengal</option>
+                                </select>
+                                </div>
+
+
+                                   <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input type="text" name="amount" placeholder="Amount" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">  <a href="#" class="badge badge-info">VIEW ALL PLANS</a>
+                                     </div>
+
+
+                                  <button type="submit" class="btn btn-primary">RECHARGE</button>
+
+                  </form>
+
+            </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <form method="post" action="{% url "homepage" %}">
+              {% csrf_token %}
+        <button type="submit" class="btn btn-danger" data-dismiss="model" >Close</button>
+          </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+
